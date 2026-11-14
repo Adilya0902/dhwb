@@ -1,47 +1,26 @@
-﻿namespace _8
+﻿using System;
+
+namespace дз8_2 
 {
-    class BankAccount
-    {
-        public string OwnerName { get; set; }
-        public decimal Balance { get; set; }
-
-        public BankAccount(string name, decimal startBalance)
-        {
-            OwnerName = name;
-            Balance = startBalance;
-        }
-
-        public void TransferMoney(BankAccount destinationAccount, decimal amount)
-        {
-            if (this.Balance >= amount)
-            {
-                this.Balance -= amount;
-                destinationAccount.Balance += amount;
-                Console.WriteLine($"Успешно переведено {amount} руб. от {this.OwnerName} к {destinationAccount.OwnerName}");
-            }
-            else
-            {
-                Console.WriteLine($"Ошибка! У {this.OwnerName} недостаточно средств для перевода {amount} руб.");
-            }
-        }
-    }
     class Program
     {
+        public static string ReverseString(string input)
+        {
+            if (string.IsNullOrEmpty(input)) return input;
+            string result = "";
+            for (int i = input.Length - 1; i >= 0; i--)
+            {
+                result += input[i];
+            }
+            return result;
+        }
         static void Main(string[] args)
         {
-            BankAccount firstAccount = new BankAccount("Иван", 1000);
-            BankAccount secondAccount = new BankAccount("Мария", 500);
-            Console.WriteLine("Исходные балансы:");
-            Console.WriteLine($"{firstAccount.OwnerName}: {firstAccount.Balance} руб.");
-            Console.WriteLine($"{secondAccount.OwnerName}: {secondAccount.Balance} руб.");
-            Console.WriteLine("------------------------------------------------");
-            firstAccount.TransferMoney(secondAccount, 300);
-            Console.WriteLine("------------------------------------------------");
-            Console.WriteLine("Балансы после перевода:");
-            Console.WriteLine($"{firstAccount.OwnerName}: {firstAccount.Balance} руб.");
-            Console.WriteLine($"{secondAccount.OwnerName}: {secondAccount.Balance} руб.");
-            Console.WriteLine("------------------------------------------------");
-            firstAccount.TransferMoney(secondAccount, 2000);
+            Console.WriteLine("Введите строку, которую хотите перевернуть:");
+            string text = Console.ReadLine(); 
+            string reversedText = ReverseString(text); 
+            Console.WriteLine($"Результат: {reversedText}"); 
+            Console.ReadKey(); 
         }
     }
 }
